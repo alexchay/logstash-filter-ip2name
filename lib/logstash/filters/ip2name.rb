@@ -13,7 +13,7 @@ require "ipaddr"
 # YAML file contains CIDR ranges and corresponding them names and should like this:
 #  ---
 # Each range is defined like so
-# 11.11.11.11/32  : "example.io"
+# 11.11.11.11     : "example.io"
 # 10.10.10.0/24   : "example.local"
 # ....
 #
@@ -85,7 +85,7 @@ class LogStash::Filters::IP2Name < LogStash::Filters::Base
       matched = false
       ip = event[@address_field].to_s
       # if ip address has a specified hostname
-      name = @ip2name[ip+"/32"]
+      name = @ip2name[ip]
       # otherwise check a given ip address falls inside a CIDR range.
       if not name
         ipaddr = IPAddr.new(ip)
