@@ -111,8 +111,5 @@ class LogStash::Filters::IP2Name < LogStash::Filters::Base
     rescue => e
       @logger.error("Something went wrong when attempting to resolve ip address to name", :exception => e, :field => @address_field, :event => event)
     end
-
-    # filter_matched should go in the last line of our successful code
-    filter_matched(event)
   end # def filter
 end # class LogStash::Filters::Example
